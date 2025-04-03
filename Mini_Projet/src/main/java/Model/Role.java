@@ -2,7 +2,7 @@ package Model;
 
 public class Role {
     private int roleID;
-    private TypeRole typeRole; // Utilisation de l'énumération
+    private TypeRole typeRole; 
     private Conference conference;
     private Utilisateur utilisateur;
 
@@ -13,6 +13,9 @@ public class Role {
 		this.typeRole = typeRole;
 		this.conference = conference;
 		this.utilisateur = utilisateur;
+	}
+
+	public Role() {
 	}
 
 	public TypeRole getTypeRole() {

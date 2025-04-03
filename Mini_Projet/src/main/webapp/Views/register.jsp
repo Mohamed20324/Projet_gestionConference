@@ -20,6 +20,11 @@
             padding-bottom: 1.5rem;
             margin-bottom: 1.5rem;
         }
+        .required:after {
+            content: "*";
+            color: red;
+            margin-left: 3px;
+        }
     </style>
 </head>
 <body>
@@ -29,7 +34,7 @@
         </div>
     </nav>
 
-    <!-- Registration Form -->
+    <!-- Formulaire d'inscription -->
     <div class="container">
         <div class="register-card">
             <div class="text-center mb-4">
@@ -44,7 +49,7 @@
                 </div>
             <% } %>
 
-            <form action="RegisterServlet" method="POST" onsubmit="return validatePasswords()">
+            <form action="/RegisterServlet" method="POST">
                 
                 <!-- Informations Personnelles -->
                 <div class="form-section">
@@ -52,11 +57,11 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label required">Prénom</label>
-                            <input type="text" class="form-control" name="firstName" required>
+                            <input type="text" class="form-control" name="prenom" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label required">Nom de famille</label>
-                            <input type="text" class="form-control" name="lastName" required>
+                            <label class="form-label required">Nom</label>
+                            <input type="text" class="form-control" name="nom" required>
                         </div>
                     </div>
                     
@@ -73,12 +78,12 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label required">Mot de passe</label>
-                            <input type="password" class="form-control" id="password" name="password" required 
+                            <input type="password" class="form-control" id="password" name="motdepasse" required 
                                    minlength="8">
                             <small class="form-text text-muted">Minimum 8 caractères</small>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label required">Confirmer le mot de passe</label>
+                            <label class="form-label required">Confirmation</label>
                             <input type="password" class="form-control" id="confirmPassword" required>
                         </div>
                     </div>
@@ -90,24 +95,30 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label required">Pays</label>
-                            <select class="form-select" name="country" required>
+                            <select class="form-select" name="pays" required>
                                 <option value="">Sélectionnez un pays</option>
                                 <option value="FR">France</option>
                                 <option value="MA">Maroc</option>
                                 <option value="CA">Canada</option>
-                                <!-- Ajouter d'autres pays -->
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Institution/Organisation</label>
+                            <label class="form-label">Institution</label>
                             <input type="text" class="form-control" name="institution">
                         </div>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label class="form-label">Site web personnel</label>
-                        <input type="url" class="form-control" name="website" 
-                               placeholder="https://www.example.com">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Titre</label>
+                            <input type="text" class="form-control" name="titre">
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="form-label">Biographie</label>
+                            <textarea class="form-control" name="biographie" rows="3"></textarea>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="form-label">Site web</label>
+                            <input type="url" class="form-control" name="siteWeb" 
+                                   placeholder="https://www.example.com">
+                        </div>
                     </div>
                 </div>
 

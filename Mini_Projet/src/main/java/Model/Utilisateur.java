@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.List;
+
 public class Utilisateur {
   
     protected int utilisateurId;
@@ -9,6 +11,7 @@ public class Utilisateur {
     protected String motdepasse;
     protected String pays;
     protected String siteWeb;
+    protected Role role;
 	public int getUtilisateurId() {
 		return utilisateurId;
 	}
@@ -51,8 +54,14 @@ public class Utilisateur {
 	public void setSiteWeb(String siteWeb) {
 		this.siteWeb = siteWeb;
 	}
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
+	}
 	public Utilisateur(int utilisateurId, String nom, String prenom, String email, String motdepasse, String pays,
-			String siteWeb) {
+			String siteWeb, Role role) {
 		super();
 		this.utilisateurId = utilisateurId;
 		this.nom = nom;
@@ -61,6 +70,8 @@ public class Utilisateur {
 		this.motdepasse = motdepasse;
 		this.pays = pays;
 		this.siteWeb = siteWeb;
+		this.role = role;
 	}
-
+	
+    
 }
