@@ -22,15 +22,12 @@
     </style>
 </head>
 <body>
-    <!-- Navbar (identique à home.jsp) -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="home.jsp">ConfFST</a>
-          
         </div>
     </nav>
 
-    <!-- Login Form -->
     <div class="container">
         <div class="login-card">
             <div class="text-center mb-4">
@@ -38,42 +35,58 @@
                 <h3>Connexion</h3>
             </div>
 
-            <%-- Affichage des erreurs --%>
-            <% if(request.getAttribute("errorMessage") != null) { %>
-                <div class="alert alert-danger" role="alert">
-                    ${errorMessage}
+            <%-- Message de succès après inscription --%>
+            <% if(request.getParameter("success") != null) { %>
+                <div class="alert alert-success" role="alert">
+                    <i class="bi bi-check-circle"></i> Inscription réussie ! Vous pouvez maintenant vous connecter.
                 </div>
             <% } %>
 
-            <form action="LoginServlet" method="POST">
+            <%-- Message d'erreur --%>
+            <% if(request.getParameter("error") != null) { %>
+                <div class="alert alert-danger" role="alert">
+                    <i class="bi bi-exclamation-triangle"></i> <%= request.getParameter("error") %>
+                </div>
+            <% } %>
+
+            <form action="/Mini_Projet/LoginServlet" method="POST">
                 <div class="mb-3">
-                    <label for="email" class="form-label">Login</label>
-                    <input type="email" 
-                           class="form-control" 
-                           id="email" 
-                           name="email" 
-                           required
-                           placeholder="exemple@domain.com or id">
+                    <label for="email" class="form-label">Email</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-envelope"></i>
+                        </span>
+                        <input type="email" 
+                               class="form-control" 
+                               id="email" 
+                               name="email" 
+                               required
+                               placeholder="exemple@domain.com">
+                    </div>
                 </div>
 
                 <div class="mb-4">
                     <label for="password" class="form-label">Mot de passe</label>
-                    <input type="password" 
-                           class="form-control" 
-                           id="password" 
-                           name="password" 
-                           required
-                           placeholder="••••••••">
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-key"></i>
+                        </span>
+                        <input type="password" 
+                               class="form-control" 
+                               id="password" 
+                               name="password" 
+                               required
+                               placeholder="••••••••">
+                    </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100 mb-3">
-                    <i class="bi bi-box-arrow-in-right"></i> Se connecter
-                </button>
-
-                <div class="text-center">
-                    <p class="text-muted">Pas encore de compte ? 
-                        <a href="register.jsp" class="text-decoration-none">Créer un compte</a>
-                    </p>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-box-arrow-in-right"></i> Se connecter
+                    </button>
+                    <a href="register.jsp" class="btn btn-outline-secondary">
+                        <i class="bi bi-person-plus"></i> Créer un compte
+                    </a>
                 </div>
             </form>
         </div>
@@ -81,4 +94,4 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>1
+</html>

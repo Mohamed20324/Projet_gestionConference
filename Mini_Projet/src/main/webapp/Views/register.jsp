@@ -21,9 +21,8 @@
             margin-bottom: 1.5rem;
         }
         .required:after {
-            content: "*";
+            content: " *";
             color: red;
-            margin-left: 3px;
         }
     </style>
 </head>
@@ -34,122 +33,137 @@
         </div>
     </nav>
 
-    <!-- Formulaire d'inscription -->
     <div class="container">
         <div class="register-card">
             <div class="text-center mb-4">
                 <i class="bi bi-person-plus" style="font-size: 3rem; color: #0d6efd;"></i>
                 <h3>Création de compte</h3>
+                <p class="text-muted">Rejoignez la communauté scientifique</p>
             </div>
 
-            <%-- Affichage des erreurs --%>
-            <% if(request.getAttribute("errorMessage") != null) { %>
+            <%-- Message d'erreur --%>
+            <% if(request.getAttribute("error") != null) { %>
                 <div class="alert alert-danger" role="alert">
-                    ${errorMessage}
+                    <i class="bi bi-exclamation-triangle"></i> <%= request.getAttribute("error") %>
                 </div>
             <% } %>
 
-            <form action="/RegisterServlet" method="POST">
-                
+            <form action="/Mini_Projet/RegisterServlet" method="POST" id="registerForm">
                 <!-- Informations Personnelles -->
                 <div class="form-section">
                     <h5><i class="bi bi-person-vcard"></i> Informations Personnelles</h5>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label required">Prénom</label>
-                            <input type="text" class="form-control" name="prenom" required>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                                <input type="text" class="form-control" name="prenom" required>
+                            </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label required">Nom</label>
-                            <input type="text" class="form-control" name="nom" required>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                                <input type="text" class="form-control" name="nom" required>
+                            </div>
                         </div>
                     </div>
                     
                     <div class="mb-3">
                         <label class="form-label required">Email</label>
-                        <input type="email" class="form-control" name="email" required 
-                               placeholder="exemple@domain.com">
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi bi-envelope"></i>
+                            </span>
+                            <input type="email" class="form-control" name="email" required 
+                                   placeholder="exemple@domain.com">
+                        </div>
                     </div>
                 </div>
 
-                <!-- Informations de Connexion -->
+                <!-- Mot de passe -->
                 <div class="form-section">
                     <h5><i class="bi bi-shield-lock"></i> Sécurité</h5>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label required">Mot de passe</label>
-                            <input type="password" class="form-control" id="password" name="motdepasse" required 
-                                   minlength="8">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-key"></i>
+                                </span>
+                                <input type="password" class="form-control" id="motdepasse" name="motdepasse" 
+                                       required minlength="8">
+                            </div>
                             <small class="form-text text-muted">Minimum 8 caractères</small>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label required">Confirmation</label>
-                            <input type="password" class="form-control" id="confirmPassword" required>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-key-fill"></i>
+                                </span>
+                                <input type="password" class="form-control" id="motdepasseConfirm" 
+                                       name="motdepasseConfirm" required minlength="8">
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Informations Professionnelles -->
+                <!-- Informations Complémentaires -->
                 <div class="form-section">
-                    <h5><i class="bi bi-building"></i> Informations Professionnelles</h5>
+                    <h5><i class="bi bi-geo-alt"></i> Informations Complémentaires</h5>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label required">Pays</label>
-                            <select class="form-select" name="pays" required>
+                            <label class="form-label">Pays</label>
+                            <select class="form-select" name="pays">
                                 <option value="">Sélectionnez un pays</option>
-                                <option value="FR">France</option>
                                 <option value="MA">Maroc</option>
+                                <option value="FR">France</option>
+                                <option value="BE">Belgique</option>
+                                <option value="CH">Suisse</option>
                                 <option value="CA">Canada</option>
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Institution</label>
-                            <input type="text" class="form-control" name="institution">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Titre</label>
-                            <input type="text" class="form-control" name="titre">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label class="form-label">Biographie</label>
-                            <textarea class="form-control" name="biographie" rows="3"></textarea>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label class="form-label">Site web</label>
-                            <input type="url" class="form-control" name="siteWeb" 
-                                   placeholder="https://www.example.com">
+                            <label class="form-label">Site Web</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-globe"></i>
+                                </span>
+                                <input type="url" class="form-control" name="siteWeb" 
+                                       placeholder="https://example.com">
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-person-fill-add"></i> Créer le compte
+                        <i class="bi bi-person-plus-fill"></i> S'inscrire
                     </button>
-                    
-                    <div class="text-center mt-3">
-                        <p class="text-muted">Déjà inscrit ? 
-                            <a href="login.jsp" class="text-decoration-none">Se connecter</a>
-                        </p>
-                    </div>
+                    <a href="login.jsp" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i> Retour à la connexion
+                    </a>
                 </div>
             </form>
         </div>
     </div>
 
-    <script>
-        function validatePasswords() {
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            if(password !== confirmPassword) {
-                alert("Les mots de passe ne correspondent pas !");
-                return false;
-            }
-            return true;
-        }
-    </script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            var password = document.getElementById('motdepasse');
+            var confirm = document.getElementById('motdepasseConfirm');
+            
+            if (password.value !== confirm.value) {
+                e.preventDefault();
+                alert('Les mots de passe ne correspondent pas');
+            }
+        });
+    </script>
 </body>
 </html>

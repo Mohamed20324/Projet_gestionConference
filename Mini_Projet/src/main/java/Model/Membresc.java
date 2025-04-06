@@ -1,14 +1,18 @@
 package Model;
 
 public class Membresc extends Membre {
-    public Membresc(int utilisateurId, String nom, String prenom, String email, String motdepasse, String pays,
-			String siteWeb, Role role) {
-		super(utilisateurId, nom, prenom, email, motdepasse, pays, siteWeb, role);
-		// TODO Auto-generated constructor stub
-	}
+    
 	private boolean estResponsable;
     protected MembreComitePilotage membreComitePilotage;
    
+	public Membresc(int utilisateurId, String nom, String prenom, String email, String motdepasse, String pays,
+			String siteWeb, Role role, String biographie, String institution, String titre, boolean estResponsable,
+			MembreComitePilotage membreComitePilotage) {
+		super(utilisateurId, nom, prenom, email, motdepasse, pays, siteWeb, role, biographie, institution, titre);
+		this.estResponsable = estResponsable;
+		this.membreComitePilotage = membreComitePilotage;
+	}
+
 	public void setEstResponsable(boolean estResponsable) {
 		this.estResponsable = estResponsable;
 	}

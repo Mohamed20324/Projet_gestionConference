@@ -121,5 +121,8 @@ public class Conference {
 		this.president = president;
 		this.topics = topics;
 	}
+	public Conference() {
+		// TODO Auto-generated constructor stub
+	}
     
 }

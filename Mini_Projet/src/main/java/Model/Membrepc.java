@@ -1,15 +1,21 @@
 package Model;
 public class Membrepc extends Membre {
-    public Membrepc(int utilisateurId, String nom, String prenom, String email, String motdepasse, String pays,
-			String siteWeb, Role role) {
-		super(utilisateurId, nom, prenom, email, motdepasse, pays, siteWeb, role);
-	}
 	private String domExpertise;
     private int nbEvaluation;
     private int nbSoumission;
     private double tauxParticipation;
     private MembreComitePilotage membreComitePilotage;
 	
+	public Membrepc(int utilisateurId, String nom, String prenom, String email, String motdepasse, String pays,
+			String siteWeb, Role role, String biographie, String institution, String titre, String domExpertise,
+			int nbEvaluation, int nbSoumission, double tauxParticipation, MembreComitePilotage membreComitePilotage) {
+		super(utilisateurId, nom, prenom, email, motdepasse, pays, siteWeb, role, biographie, institution, titre);
+		this.domExpertise = domExpertise;
+		this.nbEvaluation = nbEvaluation;
+		this.nbSoumission = nbSoumission;
+		this.tauxParticipation = tauxParticipation;
+		this.membreComitePilotage = membreComitePilotage;
+	}
 	public String getDomExpertise() {
 		return domExpertise;
 	}
