@@ -44,7 +44,7 @@ public class RoleDAO {
                 role.setTypeRole(TypeRole.valueOf(rs.getString("TypeRole")));
                 
                 Conference conference = new Conference();
-                conference.setConferenceID(rs.getInt("ConferenceID"));
+                conference.setConferenceId(rs.getInt("ConferenceID"));
                 conference.setType(rs.getString("Titre"));
                 role.setConference(conference);
                 

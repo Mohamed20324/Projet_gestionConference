@@ -2,6 +2,8 @@ package DAO;
 
 import Model.Utilisateur;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UtilisateurDAO {
     private static final String CHECK_LOGIN_SQL = 
@@ -9,6 +11,7 @@ public class UtilisateurDAO {
     private static final String CHECK_EMAIL_SQL = "SELECT COUNT(*) FROM Utilisateur WHERE email = ?";
     private static final String INSERT_USER_SQL = 
             "INSERT INTO Utilisateur(email, Motdepasse, Nom, Pays, Prenom, siteWeb) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String GET_ALL_USERS_SQL = "SELECT * FROM Utilisateur";
 
     public static boolean emailExiste(String email) throws SQLException {
         try (Connection conn = Database.getConnection();
@@ -66,5 +69,25 @@ public class UtilisateurDAO {
             }
             return null;
         }
+    }
+
+    public static List<Utilisateur> getAllUtilisateurs() throws SQLException {
+        List<Utilisateur> utilisateurs = new ArrayList<>();
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(GET_ALL_USERS_SQL);
+             ResultSet rs = stmt.executeQuery()) {
+            
+            while (rs.next()) {
+                Utilisateur user = new Utilisateur();
+                user.setUtilisateurId(rs.getInt("UtilisateurID"));
+                user.setEmail(rs.getString("email"));
+                user.setNom(rs.getString("Nom"));
+                user.setPrenom(rs.getString("Prenom"));
+                user.setPays(rs.getString("Pays"));
+                user.setSiteWeb(rs.getString("siteWeb"));
+                utilisateurs.add(user);
+            }
+        }
+        return utilisateurs;
     }
 }
